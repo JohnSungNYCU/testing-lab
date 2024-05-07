@@ -9,7 +9,6 @@ COPY tsconfig.json ./
 COPY tsconfig.node.json ./
 COPY index.html ./
 
-RUN npm ci
 RUN npm install
 RUN npm run build
 
@@ -25,4 +24,6 @@ COPY tsconfig.json ./
 COPY tsconfig.node.json ./
 COPY --from=BUILDER /frontend/dist ./
 
-RUN npm run dev
+RUN npm install
+
+CMD ["npm", "run", "dev"]

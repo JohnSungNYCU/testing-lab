@@ -8,7 +8,7 @@ services:
       MYSQL_USER: app
       MYSQL_PASSWORD: app
     ports:
-        - "27017:27017"
+      - 27017:27017
     volumes:
       - ./db:/var/lib/mysql
 
@@ -16,7 +16,7 @@ services:
     build:
       context: ./backend
     ports:
-      - "3000:3000"
+      - 8888:8888
     environment:
       DB_HOST: db
     depends_on:
@@ -26,9 +26,6 @@ services:
     build:
       context: ./frontend
     ports:
-      - "5173:5173"
-    environment:
-      DB_HOST: db
+      - 5173:5173
     depends_on:
-      - db
-      
+      - backend
