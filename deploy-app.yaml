@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deploy
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: app-backend
+          image: ghcr.io/johnsungnycu/hw3-backend
+          ports:
+            - containerPort: 8888
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
+          env:
+            - name: DB_HOST
+              value: db-clusterip
+        - name: app-frontend
+          image: ghcr.io/johnsungnycu/hw3-frontend
+          ports:
+            - containerPort: 5173
+          resources:
+            requests:
+              cpu: 10m
+              memory: 10Mi
+            limits:
+              cpu: 200m
+              memory: 200Mi
+          env:
+            - name: DB_HOST
+              value: db-clusterip              
+          
