@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app-pod
+spec:
+  containers:
+    - name: app-backend
+      image: ghcr.io/johnsungnycu/hw3-backend  # 需改成自己的 Image
+      ports:
+        - containerPort: 8888
+      env:
+        - name: DB_HOST
+          value: 127.0.0.1
+    - name: app-frontend
+      image: ghcr.io/johnsungnycu/hw3-backend  # 需改成自己的 Image
+      ports:
+        - containerPort: 5173
+      env:
+        - name: DB_HOST
+          value: 127.0.0.1          
+    - name: db
+      image: mongo
+      ports:
+        - containerPort: 27017      
+      env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: root
+        - name: MYSQL_DATABASE
+          value: app
+        - name: MYSQL_USER
+          value: app
+        - name: MYSQL_PASSWORD
+          value: app
