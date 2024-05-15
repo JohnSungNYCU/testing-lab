@@ -22,11 +22,14 @@ jobs:
           name: code-coverage-report
           path: backend/coverage/index.html
 
-      - name: compare
+      - name: fetch
         uses: actions/download-artifact@v1
         with:
           name: code-coverage-report
           path: backend/index.html
-        run: diff backend/coverage/index.html backend/index.html
+
+      - name: compare
+        working-directory: backend
+        run: diff coverage/index.html index.html
           
   
