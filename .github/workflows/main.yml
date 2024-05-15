@@ -17,9 +17,8 @@ jobs:
         run: npm run test
 
       - name: Archive code coverage results
-        working-directory: backend
         uses: actions/upload-artifact@v4
         with:
           name: code-coverage-report
-          path: coverage/index.html
+          path: backend/coverage/index.html
   
