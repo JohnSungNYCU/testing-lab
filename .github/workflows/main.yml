@@ -8,12 +8,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Backend
-        run: cd backend
-        
       - name: Install vitest
+        working-directory: backend
         run: npm install 
 
       - name: Coverage Test
+        working-directory: backend
         run: npm run test
   
