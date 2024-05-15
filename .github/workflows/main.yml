@@ -2,7 +2,7 @@ name: CI
 
 on: [push]
 jobs:
-  coverate:
+  coverage:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -21,4 +21,12 @@ jobs:
         with:
           name: code-coverage-report
           path: backend/coverage/index.html
+
+      - name: compare
+        uses: actions/download-artifact@v1
+        with:
+          name: code-coverage-report
+          path: backend/index.html
+        run: diff backend/coverage/index.html backend/index.html
+          
   
