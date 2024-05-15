@@ -12,8 +12,8 @@ jobs:
         run: cd backend
         
       - name: Install vitest
-        run: npm install vitest
+        run: npm install 
 
       - name: Coverage Test
-        run: vitest run --coverage
+        run: npm run test
   
